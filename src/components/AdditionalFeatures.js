@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import AdditionalFeature from "./AdditionalFeature";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { addFeature } from "../actions/index";
 
@@ -12,15 +12,8 @@ const AdditionalFeatures = ({ additionalFeatures, addFeature }) => {
       <h4>Additional Features</h4>
       {additionalFeatures.length ? (
         <ol type="1">
-          {additionalFeatures.map(feature => (
-            <AdditionalFeature
-              key={feature.id}
-              id={feature.id}
-              added={feature.added}
-              name={feature.name}
-              price={feature.price}
-              addFeature={addFeature}
-            />
+          {additionalFeatures.map((feature, index) => (
+            <AdditionalFeature key={index} id={feature.id} feature={feature} />
           ))}
         </ol>
       ) : (
@@ -28,19 +21,18 @@ const AdditionalFeatures = ({ additionalFeatures, addFeature }) => {
       )}
     </div>
   );
-
-  AdditionalFeatures.propTypes = {
-    additionalFeatures: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        added: PropTypes.bool.isRequired
-      }).isRequired
-    ).isRequired,
-    addFeature: PropTypes.func.isRequired
-  };
 };
+// AdditionalFeatures.propTypes = {
+//   additionalFeatures: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       name: PropTypes.string.isRequired,
+//       price: PropTypes.number.isRequired,
+//       added: PropTypes.bool.isRequired
+//     }).isRequired
+//   ).isRequired,
+//   addFeature: PropTypes.func.isRequired
+// };
 
 const mapStateToProps = state => {
   return {

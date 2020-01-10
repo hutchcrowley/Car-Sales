@@ -3,18 +3,19 @@ import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { devToolsEnhancer } from "redux-devtools-extension";
 
-import { reducer } from "./reducers/index";
+import { rootReducer } from "./reducers/index";
 
 import App from "./App";
 
 import "bulma/css/bulma.css";
 import "./styles.scss";
 
-const store = createStore(reducer);
+const store = createStore(rootReducer, devToolsEnhancer());
 console.log("This is the store: ", store);
 
-reducer(undefined, { type: "REDUX_INIT_1" });
+rootReducer(undefined, { type: "REDUX_INIT_1" });
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
