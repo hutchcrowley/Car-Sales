@@ -1,15 +1,23 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import AddedFeature from './AddedFeature';
+import { connect } from "react-redux";
 
-const AddedFeatures = props => {
+import AddedFeature from "./AddedFeature";
+
+const AddedFeatures = ({ features, onRemoveClick }) => {
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.car.features.length ? (
+      {features.length ? (
         <ol type="1">
-          {props.car.features.map(item => (
-            <AddedFeature key={item.id} feature={item} />
+          {features.map(feature => (
+            <AddedFeature
+              key={feature.id}
+              id={feature.id}
+              name={feature.name}
+              removeFeature={onRemoveClick}
+            />
           ))}
         </ol>
       ) : (
@@ -17,6 +25,20 @@ const AddedFeatures = props => {
       )}
     </div>
   );
+  AddedFeatures.propTypes = {
+    features: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+      })
+    ).isRequired,
+    removeFeature: PropTypes.func.isRequired
+  };
 };
 
-export default AddedFeatures;
+export default connect(
+  state => {
+    features: state.car.features;
+  },
+  { removeFeature }
+)(AddedFeatures);

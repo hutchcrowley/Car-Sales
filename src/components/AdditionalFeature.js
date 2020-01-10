@@ -1,13 +1,33 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const AdditionalFeature = props => {
+const AdditionalFeature = ({ addFeature, name, price, added, id }) => {
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button">Add</button>
-      {props.feature.name} (+{props.feature.price})
+      <input
+        type="submit"
+        value={id}
+        className="button"
+        onClick={() => {
+          addFeature({ id });
+        }}
+      >
+        Add
+      </button>
+      <h3 className={added ? "visible" : "hidden"}>
+        {name} (+{price})
+      </h3>
     </li>
   );
+
+  AdditionalFeature.propTypes = {
+    addFeature: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    added: PropTypes.bool.isRequired
+  };
 };
 
 export default AdditionalFeature;
