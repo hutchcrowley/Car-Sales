@@ -1,14 +1,18 @@
-import React from 'react';
-import AdditionalFeature from './AdditionalFeature';
+import React from "react";
+// import PropTypes from "prop-types";
+import AdditionalFeature from "./AdditionalFeature";
 
-const AdditionalFeatures = props => {
+import { useSelector } from "react-redux";
+
+const AdditionalFeatures = () => {
+  const additionalFeatures = useSelector(state => state.additionalFeatures);
   return (
     <div className="content">
       <h4>Additional Features</h4>
-      {props.additionalFeatures.length ? (
+      {additionalFeatures.length ? (
         <ol type="1">
-          {props.additionalFeatures.map(item => (
-            <AdditionalFeature key={item.id} feature={item} />
+          {additionalFeatures.map((feature, index) => (
+            <AdditionalFeature key={index} id={feature.id} feature={feature} />
           ))}
         </ol>
       ) : (
@@ -17,5 +21,23 @@ const AdditionalFeatures = props => {
     </div>
   );
 };
+// AdditionalFeatures.propTypes = {
+//   additionalFeatures: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       name: PropTypes.string.isRequired,
+//       price: PropTypes.number.isRequired,
+//       added: PropTypes.bool.isRequired
+//     }).isRequired
+//   ).isRequired,
+//   addFeature: PropTypes.func.isRequired
+// };
 
+// const mapStateToProps = state => {
+//   return {
+//     additionallFeatures: state.additionalFeatures
+//   };
+// };
+
+// export default connect(mapStateToProps, { addFeature })(AdditionalFeatures);
 export default AdditionalFeatures;
