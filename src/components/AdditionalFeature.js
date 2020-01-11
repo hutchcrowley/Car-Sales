@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 import { addFeature } from "../actions/index";
@@ -13,7 +13,6 @@ const AdditionalFeature = props => {
   };
   return (
     <li>
-      {/* Add an onClick that will let you add a feature to your car */}
       <button
         type="submit"
         value={props.feature.id}
@@ -26,12 +25,12 @@ const AdditionalFeature = props => {
     </li>
   );
 };
-// AdditionalFeature.propTypes = {
-//   addFeature: PropTypes.func.isRequired,
-//   name: PropTypes.string.isRequired,
-//   price: PropTypes.number.isRequired,
-//   id: PropTypes.number.isRequired,
-// };
+AdditionalFeature.propTypes = {
+  addFeature: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 // const mapStateToProps = state => {
 //   return {

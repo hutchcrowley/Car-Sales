@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import AdditionalFeature from "./AdditionalFeature";
 
 import { useSelector } from "react-redux";
@@ -21,17 +21,17 @@ const AdditionalFeatures = () => {
     </div>
   );
 };
-// AdditionalFeatures.propTypes = {
-//   additionalFeatures: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       name: PropTypes.string.isRequired,
-//       price: PropTypes.number.isRequired,
-//       added: PropTypes.bool.isRequired
-//     }).isRequired
-//   ).isRequired,
-//   addFeature: PropTypes.func.isRequired
-// };
+AdditionalFeatures.propTypes = {
+  additionalFeatures: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      added: PropTypes.bool.isRequired
+    }).isRequired
+  ).isRequired,
+  addFeature: PropTypes.func.isRequired
+};
 
 // const mapStateToProps = state => {
 //   return {

@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 import { removeFeature } from "../actions/index";
@@ -13,7 +13,6 @@ const AddedFeature = props => {
 
   return (
     <li>
-      {/* Add an onClick to run a function to remove a feature */}
       <button className="button" onClick={handleRemove}>
         X
       </button>
@@ -21,10 +20,10 @@ const AddedFeature = props => {
     </li>
   );
 };
-// AddedFeature.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   id: PropTypes.number.isRequired,
-//   removeFeature: PropTypes.func.isRequired
-// };
+AddedFeature.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  removeFeature: PropTypes.func.isRequired
+};
 
 export default AddedFeature;
