@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { removeFeature } from "../actions/index";
 
 const AddedFeature = props => {
+  const dispatch = useDispatch();
+
   const handleRemove = () => {
     dispatch(removeFeature(props.feature));
   };
@@ -15,7 +17,7 @@ const AddedFeature = props => {
       <button className="button" onClick={handleRemove}>
         X
       </button>
-      {name}
+      {props.feature.name}
     </li>
   );
 };

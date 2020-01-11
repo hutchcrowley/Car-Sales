@@ -1,20 +1,28 @@
 import React from "react";
 // import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { addFeature } from "../actions/index";
 
-const AdditionalFeature = ({ addFeature, feature, id }) => {
+const AdditionalFeature = props => {
+  const dispatch = useDispatch();
+
   const handleAdd = () => {
-    addFeature(feature);
+    addFeature(props.feature);
+    dispatch(addFeature(props.feature));
   };
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button type="submit" value={id} className="button" onClick={handleAdd}>
+      <button
+        type="submit"
+        value={props.feature.id}
+        className="button"
+        onClick={handleAdd}
+      >
         Add
       </button>
-      {name} (+{price})
+      {props.feature.name} (+{props.feature.price})
     </li>
   );
 };
@@ -25,12 +33,13 @@ const AdditionalFeature = ({ addFeature, feature, id }) => {
 //   id: PropTypes.number.isRequired,
 // };
 
-const mapStateToProps = state => {
-  return {
-    id: state.additionalFeatures.id,
-    name: state.additionalFeatures.name,
-    price: state.additionalFeatures.price
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     id: state.additionalFeatures.id,
+//     name: state.additionalFeatures.name,
+//     price: state.additionalFeatures.price
+//   };
+// };
 
-export default connect(mapStateToProps, { addFeature })(AdditionalFeature);
+// export default connect(mapStateToProps, { addFeature })(AdditionalFeature);
+export default AdditionalFeature;

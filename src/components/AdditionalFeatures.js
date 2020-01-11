@@ -4,9 +4,8 @@ import AdditionalFeature from "./AdditionalFeature";
 
 import { useSelector } from "react-redux";
 
-import { addFeature } from "../actions/index";
-
-const AdditionalFeatures = ({ additionalFeatures, addFeature }) => {
+const AdditionalFeatures = () => {
+  const additionalFeatures = useSelector(state => state.additionalFeatures);
   return (
     <div className="content">
       <h4>Additional Features</h4>
@@ -34,10 +33,11 @@ const AdditionalFeatures = ({ additionalFeatures, addFeature }) => {
 //   addFeature: PropTypes.func.isRequired
 // };
 
-const mapStateToProps = state => {
-  return {
-    additionallFeatures: state.additionalFeatures
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     additionallFeatures: state.additionalFeatures
+//   };
+// };
 
-export default connect(mapStateToProps, { addFeature })(AdditionalFeatures);
+// export default connect(mapStateToProps, { addFeature })(AdditionalFeatures);
+export default AdditionalFeatures;

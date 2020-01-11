@@ -11,7 +11,7 @@ export const addFeature = feature => {
 export const removeFeature = feature => {
   console.log(feature);
   return {
-    type: REMOVE_FEATURE
+    type: REMOVE_FEATURE,
     payload: feature
   };
 };
