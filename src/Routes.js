@@ -8,7 +8,7 @@ const Routes = () => {
     <div>
       <Switch>
         <Route path='/'>
-          <CarQuery />
+          <App />
         </Route>
       </Switch>
     </div>
