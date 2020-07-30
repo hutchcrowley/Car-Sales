@@ -1,44 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { addFeature } from "../actions/index";
+import { addFeature } from '../actions/index'
 
-const AdditionalFeature = props => {
-  const dispatch = useDispatch();
-
-  const handleAdd = () => {
-    addFeature(props.feature);
-    dispatch(addFeature(props.feature));
-  };
-  return (
-    <li>
-      <button
-        type="submit"
-        value={props.feature.id}
-        className="button"
-        onClick={handleAdd}
-      >
-        Add
-      </button>
-      {props.feature.name} (+{props.feature.price})
-    </li>
-  );
-};
+const AdditionalFeature = (props) => {
+	const handleAdd = () => {
+		console.log('feature: ', props.feature)
+		props.addFeature(props.feature)
+	}
+	return (
+		<li key={props.id}>
+			<button type='submit' className='button' onClick={(e) => handleAdd(e)}>
+				Add
+			</button>
+			{props.feature.name} (+{props.feature.price})
+		</li>
+	)
+}
 AdditionalFeature.propTypes = {
-  addFeature: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired
-};
+	addFeature: PropTypes.func.isRequired,
+	name: PropTypes.string.isRequired,
+	price: PropTypes.number.isRequired,
+	id: PropTypes.number.isRequired,
+}
 
-// const mapStateToProps = state => {
-//   return {
-//     id: state.additionalFeatures.id,
-//     name: state.additionalFeatures.name,
-//     price: state.additionalFeatures.price
-//   };
-// };
+const mapStateToProps = (state) => {
+	return {
+		id: state.additionalFeatures.id,
+		name: state.additionalFeatures.name,
+		price: state.additionalFeatures.price,
+	}
+}
 
-// export default connect(mapStateToProps, { addFeature })(AdditionalFeature);
-export default AdditionalFeature;
+export default connect(mapStateToProps, { addFeature })(AdditionalFeature)

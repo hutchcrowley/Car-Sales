@@ -1,29 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { removeFeature } from "../actions/index";
+import { removeFeature } from '../actions/index'
 
-const AddedFeature = props => {
-  const dispatch = useDispatch();
+const AddedFeature = (props) => {
+	const handleRemove = () => {
+		props.removeFeature(props.feature)
+	}
 
-  const handleRemove = () => {
-    dispatch(removeFeature(props.feature));
-  };
-
-  return (
-    <li>
-      <button className="button" onClick={handleRemove}>
-        X
-      </button>
-      {props.feature.name}
-    </li>
-  );
-};
+	return (
+		<li key={props.id}>
+			<button className='button' onClick={(e) => handleRemove(e)}>
+				X
+			</button>
+			{props.feature.name}
+		</li>
+	)
+}
 AddedFeature.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  removeFeature: PropTypes.func.isRequired
-};
+	name: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	removeFeature: PropTypes.func.isRequired,
+}
 
-export default AddedFeature;
+const mapStateToProps = (state) => {
+	return {
+		id: state.additionalFeatures.id,
+		name: state.additionalFeatures.name,
+	}
+}
+
+export default connect(mapStateToProps, { removeFeature })(AddedFeature)
